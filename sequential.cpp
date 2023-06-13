@@ -1,0 +1,109 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main(int argc, char* argv){
+    int n = atoi(argv[1]);
+    int t = atoi(argv[2]);
+
+
+    //manually set 
+    // int n = 3;    
+
+    double *a;
+    a = (double*)malloc(n*n*sizeof(double));
+    
+    for(int i = 0; i < n; i++){
+        for (int j = 0; j < n; j++){
+            a[i*n + j] = drand48();
+        }
+    }
+
+
+    //manually initialise
+    // double a[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    double *l;
+    double *u;
+    l = (double*)malloc(n*n*sizeof(double));
+    u = (double*)malloc(n*n*sizeof(double));
+
+    double *p;
+    p = (double*)malloc(n*sizeof(double));
+    for(int i = 0; i < n; i++){
+        p[i] = i;
+    }
+
+    //initialise l & u
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            u[i*n + j] = 0;
+            if(i == j){
+                l[i*n + j] = 1;
+            }
+            else{
+                l[i*n + j] = 0;
+            }
+        }
+    }
+
+    //perform LU decomposition
+    for( int k = 0; k < n; k++){
+        int max_row = k;
+        double max_val = 0;
+        for ( int i = k+1; i < n; i++){
+            if (abs(a[i*n + k]) > max_val){
+                max_val = abs(a[i*n + k]);
+                max_row = i;
+            }
+        }
+        if (max_val == 0){
+            cout << "Singular Matrix" << endl;
+            return -1;
+        }
+        else{
+            swap(p[k], p[max_row]);
+            for (int i = 0; i < n; i++){
+                swap(a[k*n + i], a[max_row*n + i]);
+            }
+
+            for(int i = 0; i < k; i++){
+                swap(l[k*n + i], l[max_row*n + i]);
+            }
+
+            u[k*n + k] = a[k*n + k];
+
+            for( int i = k+1; i < n; i++){
+                l[i*n + k] = a[i*n + k]/u[k*n + k];
+                u[k*n + i] = a[k*n + i];
+            }
+
+            for(int i = k+1; i < n; i++){
+                for(int j = k+1; j < n; j++){
+                    a[i*n + j] = a[i*n + j] - l[i*n + k]*u[k*n + j];
+                }
+            }
+        }
+    }
+
+    //print l & u
+    cout << "L:" << endl;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            cout << l[i*n + j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "U:" << endl;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            cout << u[i*n + j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+    return 0;
+}
