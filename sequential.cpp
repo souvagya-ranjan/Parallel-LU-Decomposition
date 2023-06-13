@@ -3,26 +3,26 @@
 using namespace std;
 
 
-int main(int argc, char* argv){
-    int n = atoi(argv[1]);
-    int t = atoi(argv[2]);
+int main(int argc, char* argv[]){
+    int n = stoi(argv[1]);
+    // int t = atoi(argv[2]);
 
 
     //manually set 
-    // int n = 3;    
+    n = 3;    
 
-    double *a;
-    a = (double*)malloc(n*n*sizeof(double));
+    // double *a;
+    // a = (double*)malloc(n*n*sizeof(double));
     
-    for(int i = 0; i < n; i++){
-        for (int j = 0; j < n; j++){
-            a[i*n + j] = drand48();
-        }
-    }
+    // for(int i = 0; i < n; i++){
+    //     for (int j = 0; j < n; j++){
+    //         a[i*n + j] = drand48();
+    //     }
+    // }
 
 
     //manually initialise
-    // double a[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    double a[9] = {-2, 2, -1, 6, -6, 7, 3, -8, 4};
 
     double *l;
     double *u;
