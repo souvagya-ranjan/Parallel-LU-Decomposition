@@ -50,6 +50,36 @@ int main(int argc, char* argv[]){
 
     //perform LU decomposition
     for( int k = 0; k < n; k++){
+        cout<< "A: "<< endl;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                cout << a[i*n + j] << " ";
+            }
+            cout << endl;
+        } 
+        cout << endl;
+        cout << "P: "<< endl;
+        for(int i = 0; i < n; i++){
+            cout << p[i] << " ";
+        }
+        cout << endl;
+        cout <<"L: "<< endl;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                cout << l[i*n + j] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+        cout << "U: "<< endl;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                cout << u[i*n + j] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+
         int max_row = k;
         double max_val = 0;
         for ( int i = k+1; i < n; i++){
@@ -58,8 +88,9 @@ int main(int argc, char* argv[]){
                 max_row = i;
             }
         }
-        if (max_val == 0){
+        if (max_val == 0 and k!=n-1){
             cout << "Singular Matrix" << endl;
+            cout << "k: "<< k << endl;
             return -1;
         }
         else{
