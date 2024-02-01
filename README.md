@@ -45,11 +45,11 @@ The verification step need not be parallelized. Have your program time the LU de
 
 The formal components of the assignment are listed below:
 
-    Write a shared-memory parallel program that uses OpenMP to perform LU decomposition with partial pivoting.
+   * Write a shared-memory parallel program that uses OpenMP to perform LU decomposition with partial pivoting.
 
-    Write a shared-memory parallel program that uses Pthreads to perform LU decomposition with partial pivoting.
+   * Write a shared-memory parallel program that uses Pthreads to perform LU decomposition with partial pivoting.
 
-    Write a document that describes how your programs work. This document should not include your programs, though it may include figures containing pseudo-code that sketch the key elements of your parallelization strategy for each implementation. Explain how your program partitions the data, work and exploits parallelism. Justify your implementation choices. Explain how the parallel work is synchronized.
+   * Write a document that describes how your programs work. This document should not include your programs, though it may include figures containing pseudo-code that sketch the key elements of your parallelization strategy for each implementation. Explain how your program partitions the data, work and exploits parallelism. Justify your implementation choices. Explain how the parallel work is synchronized.
     Use problem size n = 8000 to evaluate the performance of your implementations. If your sequential running time is too long for the interactive queue, you may base your timing measurements on n=7000. Prepare a table that includes your timing measurements for the LU decomposition phase of your implementations on 1, 2, 4, 8, and 16 threads. Graph of the parallel efficiency of your program executions. Plot a point for each of the executions. The x axis should show the number of processors. The Y axis should show your measured parallel efficiency for the execution. Construct your plot so that the X axis of the graph intersects the Y axis at Y=0.
 
 In this assignment, reading and writing shared data will account for much of the execution cost. Accordingly, you should pay attention to how you lay out the data and how your parallelizations interact with your data layout. You should consider whether you want to use a contiguous layout for the array, or whether you want to represent the array as a vector, of n pointers to n-element data vectors. You should explicitly consider how false sharing might arise and take appropriate steps to minimize its impact on performance.
